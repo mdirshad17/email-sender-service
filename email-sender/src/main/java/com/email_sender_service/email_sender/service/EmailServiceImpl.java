@@ -12,6 +12,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.List;
 
 @Service
 public class EmailServiceImpl implements EmailService{
@@ -56,5 +57,11 @@ public class EmailServiceImpl implements EmailService{
 //            throw e;e
         }
         return "";
+    }
+
+    @Override
+    public String sendBulkMail(List<EmailDetails> emailDetailsList) {
+        emailDetailsList.forEach(emailDetails -> sendEmail(emailDetails));
+        return "Bulk Mail sent";
     }
 }
