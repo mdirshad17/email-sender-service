@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class EmailServiceController {
 
@@ -14,14 +16,17 @@ public class EmailServiceController {
     private EmailServiceImpl emailService;
     @PostMapping("/sendMail")
     public String sendMail(@RequestBody  EmailDetails emailDetails){
-        String status=emailService.sendEmail(emailDetails);
-        return status;
+        return emailService.sendEmail(emailDetails);
     }
 
     @PostMapping("/sendMailWithAttachment")
     public String sendMailWithAttachment(@RequestBody EmailDetails emailDetails){
-        String status=emailService.sendEmailWithAttachement(emailDetails);
-        return status;
+        return emailService.sendEmailWithAttachement(emailDetails);
+    }
+
+    @PostMapping("/sendBulkMail")
+    public String sendBulkMail(@RequestBody List<EmailDetails> emailDetailsList){
+        return emailService.sendBulkMail(emailDetailsList);
     }
 
 }
