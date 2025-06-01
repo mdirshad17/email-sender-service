@@ -18,4 +18,10 @@ public class EmailServiceController {
         return status;
     }
 
+    @PostMapping("/sendMailWithAttachment")
+    public String sendMailWithAttachment(@RequestBody EmailDetails emailDetails){
+        String status=emailService.sendEmailWithAttachement(emailDetails);
+        return status;
+    }
+
 }
